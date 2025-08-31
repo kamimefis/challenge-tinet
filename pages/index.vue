@@ -1,7 +1,10 @@
 <template>
   <div style="padding: 20px">
     <div style="margin-bottom: 12px">
-      <input v-model="nuevoNombreInput" placeholder="Nombre contador (máx 20)" />
+      <input
+        v-model="nuevoNombreInput"
+        placeholder="Nombre contador (máx 20)"
+      />
       <button @click="agregar" :disabled="!puedeAgregarContador">
         Agregar contador
       </button>
@@ -10,24 +13,19 @@
     <p>Total contadores: {{ contadores.length }}</p>
     <p>Suma total (getter): {{ sumaTotal }}</p>
 
-    <ul>
-      <li v-for="contador in contadores" :key="contador.id" style="margin-bottom: 8px">
-        <strong>{{ contador.nombre }}</strong> — <span>{{ contador.valor }}</span>
-        <button @click="decrementar(contador.id)" :disabled="contador.valor <= 0">-</button>
-        <button @click="incrementar(contador.id)" :disabled="contador.valor >= 20">+</button>
-        <button @click="eliminar(contador.id)">Eliminar</button>
-      </li>
-    </ul>
-
-    <div v-if="contadores.length === 0" style="margin-top: 16px">
-      <p>No hay contadores</p>
-    </div>
+    <ListadorDeContadores
+      :contadores="contadores"
+      @incrementar="incrementar"
+      @decrementar="decrementar"
+      @eliminar="eliminar"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
+import ListadorDeContadores from "@/components/listador-de-contadores/ListadorDeContadores.vue";
 
 const store = useStore();
 const nuevoNombreInput = ref("");
@@ -37,7 +35,11 @@ const sumaTotal = computed(() => store.getters.sumaTotal);
 
 const puedeAgregarContador = computed(() => {
   const caracteresNombre = nuevoNombreInput.value.trim();
-  return caracteresNombre.length > 0 && caracteresNombre.length <= 20 && store.getters.maximoContadores;
+  return (
+    caracteresNombre.length > 0 &&
+    caracteresNombre.length <= 20 &&
+    store.getters.maximoContadores
+  );
 });
 
 function agregar() {
