@@ -9,7 +9,7 @@
         @input="actualizarNuevoNombre($event.target.value)"
       />
       <div class="botones">
-        <button @click="agregarContador">Guardar</button>
+        <button @click="agregarContador" :disabled="disabledSaveButton">Guardar</button>
         <button @click="cerrarModal">Cancelar</button>
       </div>
     </div>
@@ -28,6 +28,8 @@ const nuevoNombre = computed(() => store.state.nuevoNombre);
 const cerrarModal = () => store.commit("cerrarModal");
 const agregarContador = () => store.commit("agregarContador");
 const actualizarNuevoNombre = (valor) => store.commit("actualizarNuevoNombre", valor);
+
+const disabledSaveButton= computed(()=> nuevoNombre.value === '' || nuevoNombre.value.length >20);
 </script>
 
 <style scoped>
