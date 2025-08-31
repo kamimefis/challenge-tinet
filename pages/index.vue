@@ -1,4 +1,5 @@
 <template>
+  <Header/>
   <div style="padding: 20px">
     <div style="margin-bottom: 12px">
       <button @click="abrirModal">Agregar contador</button>
@@ -23,11 +24,13 @@ import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import ListadorDeContadores from "@/components/listador-de-contadores/ListadorDeContadores.vue";
 import ModalAgregarContador from "@/components/ModalAgregarContador.vue";
+import Header from "@/components/Header.vue"
 
 const store = useStore();
 // const nuevoNombreInput = ref("");
 
-const contadores = computed(() => store.state.contadores);
+const contadores = computed(() => store.getters.contadoresOrdenados);
+// const contadores = computed(() => store.state.contadores);
 const sumaTotal = computed(() => store.getters.sumaTotal);
 
 // const puedeAgregarContador = computed(() => {

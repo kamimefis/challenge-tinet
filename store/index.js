@@ -7,6 +7,7 @@ export const store = createStore({
       contadores: [],
       modalAbierto: false,
       nuevoNombre: "",
+      ordenSeleccionado: "",
     };
   },
   mutations: {
@@ -44,6 +45,9 @@ export const store = createStore({
     actualizarNuevoNombre(state, valor) {
       state.nuevoNombre = valor;
     },
+    actualizarOrden(state, nuevoOrden) {
+    state.ordenSeleccionado = nuevoOrden;
+    },
   },
   actions: {
     // Define your actions here
@@ -52,5 +56,26 @@ export const store = createStore({
     // Define your getters here
     sumaTotal: (state) => state.contadores.reduce((acc, c) => acc + c.valor, 0),
     maximoContadores: (state) => state.contadores.length <= 20,
+
+    contadoresOrdenados: (state) => {
+    let copia = [...state.contadores];
+    if (state.ordenSeleccionado === "nombre-asc") {
+      return copia.sort((a, b) =>
+        a.nombre.localeCompare(b.nombre, "es", { sensitivity: "base" })
+      );
+    }
+    if (state.ordenSeleccionado === "nombre-desc") {
+      return copia.sort((a, b) =>
+        b.nombre.localeCompare(a.nombre, "es", { sensitivity: "base" })
+      );
+    }
+    if (state.ordenSeleccionado === "valor-asc") {
+      return copia.sort((a, b) => a.valor - b.valor);
+    }
+    if (state.ordenSeleccionado === "valor-desc") {
+      return copia.sort((a, b) => b.valor - a.valor);
+    }
+    return copia;
+  },
   },
 });
