@@ -2,11 +2,13 @@
   <header class="app-header">
     <h1>Gestor de Contadores</h1>
     <OrdenarContadores />
+    <FiltrarContadores/>
   </header>
 </template>
 
 <script setup>
 import OrdenarContadores from "./OrdenarContadores.vue";
+import FiltrarContadores from "./FiltrarContadores.vue"
 </script>
 
 <style scoped>

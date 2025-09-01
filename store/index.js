@@ -8,6 +8,10 @@ export const store = createStore({
       modalAbierto: false,
       nuevoNombre: "",
       ordenSeleccionado: "",
+      filtro:{
+        tipo: "",
+        valor: null
+      }
     };
   },
   mutations: {
@@ -48,6 +52,13 @@ export const store = createStore({
     actualizarOrden(state, nuevoOrden) {
     state.ordenSeleccionado = nuevoOrden;
     },
+    setFiltro(state, { tipo, valor }) {
+      state.filtro.tipo = tipo;
+      state.filtro.valor = valor;
+    },
+    limpiarFiltro(state) {
+      state.filtro = { tipo: "", valor: null };
+    },
   },
   actions: {
     // Define your actions here
@@ -76,6 +87,16 @@ export const store = createStore({
       return copia.sort((a, b) => b.valor - a.valor);
     }
     return copia;
-  },
+    },
+    contadoresFiltrados: (state, getters) => {
+      let lista = getters.contadoresOrdenados;
+      if (state.filtro.tipo === "mayor" && state.filtro.valor !== null) {
+        return lista.filter((item) => item.valor > state.filtro.valor);
+      }
+      if (state.filtro.tipo === "menor" && state.filtro.valor !== null) {
+        return lista.filter((item) => item.valor < state.filtro.valor);
+      }
+      return lista;
+    },
   },
 });
