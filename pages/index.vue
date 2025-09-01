@@ -1,12 +1,11 @@
 <template>
   <Header/>
   <div style="padding: 20px">
-    <div style="margin-bottom: 12px">
+    <!-- <div style="margin-bottom: 12px">
       <button @click="abrirModal">Agregar contador</button>
-    </div>
+    </div> -->
 
-    <p>Total contadores: {{ contadores.length }}</p>
-    <p>Suma total (getter): {{ sumaTotal }}</p>
+    <!-- <p>Total contadores: {{ contadores.length }}</p> -->
 
     <ListadorDeContadores
       :contadores="contadores"

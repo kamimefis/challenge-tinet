@@ -1,16 +1,17 @@
 <template>
   <div v-if="modalAbierto" class="modal-overlay">
     <div class="modal-content">
-      <h2>Agregar Contador</h2>
+      <h3>Agregar Contador</h3>
       <input
         type="text"
         placeholder="Nombre contador (máx 20)"
         :value="nuevoNombre"
         @input="actualizarNuevoNombre($event.target.value)"
+        @keyup.enter="agregarContador"
       />
       <div class="botones">
-        <button @click="agregarContador" :disabled="disabledSaveButton">Guardar</button>
-        <button @click="cerrarModal">Cancelar</button>
+        <button class="btn btn-guardar" @click="agregarContador" :disabled="disabledSaveButton">Guardar</button>
+        <button class="btn btn-cancelar" @click="cerrarModal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -46,11 +47,12 @@ const disabledSaveButton= computed(()=> nuevoNombre.value === '' || nuevoNombre.
 }
 
 .modal-content {
-  background: white;
+  background: #dedede;
   padding: 20px;
   border-radius: 8px;
   width: 300px;
   max-width: 90%;
+  color: black;
 }
 
 .botones {
@@ -58,4 +60,34 @@ const disabledSaveButton= computed(()=> nuevoNombre.value === '' || nuevoNombre.
   display: flex;
   justify-content: space-between;
 }
+
+.btn-guardar{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #469a23;
+  color: white;
+}
+
+.btn-cancelar{
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #de1414;
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input{
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #a9a8a8;
+  box-sizing: border-box;
+}
+
 </style>

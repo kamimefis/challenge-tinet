@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul style="padding: 0">
     <Contador
       v-for="contador in contadores"
       :key="contador.id"
@@ -10,7 +10,7 @@
     />
   </ul>
   <div v-if="contadores.length === 0" style="margin-top: 16px">
-    <p>No hay contadores. Deseas agregar uno?</p>
+    <h1>No hay contadores. Desea agregar uno?</h1>
   </div>
 </template>
 

@@ -23,20 +23,32 @@ const limpiarFiltro = () => {
 
 <template>
   <div class="filtrar-contadores">
-    <select v-model="tipo">
-      <option disabled value="">Tipo de filtro</option>
+    <select v-model="tipo" class="container-element">
+      <option disabled value="">Filtrar por</option>
       <option value="mayor">Mayor que</option>
       <option value="menor">Menor que</option>
     </select>
 
-    <input type="number" v-model.number="valor" placeholder="Ingrese número" />
+    <input type="number" v-model.number="valor" class="number-input container-element" />
 
-    <button @click="aplicarFiltro">Aplicar</button>
-    <button @click="limpiarFiltro">Limpiar</button>
+    <button class="btn" @click="aplicarFiltro">Aplicar</button>
+    <button class="btn "  @click="limpiarFiltro">Limpiar</button>
   </div>
 </template>
 
 <style scoped>
-.filtrar-contadores { display:flex; gap:8px; align-items:center; margin-left:1rem; }
+.filtrar-contadores { display:flex; gap:8px; align-items:center; }
+
+.number-input{
+  width: 35px;
+}
+
+.btn{
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #2e3668;
+  color: white;
+}
 </style>
 

@@ -1,8 +1,7 @@
 <template>
   <div class="ordenar-contadores">
-    <h3>Ordenar Contadores</h3>
-    <select v-model="ordenSeleccionado">
-      <option disabled value="">Seleccione</option>
+    <select v-model="ordenSeleccionado" class="container-element">
+      <option disabled value="">Ordenar Contadores</option>
       <option value="nombre-asc">Por nombre ASC</option>
       <option value="nombre-desc">Por nombre DESC</option>
       <option value="valor-asc">Por valor ASC</option>

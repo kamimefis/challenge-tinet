@@ -1,7 +1,8 @@
 <template>
   <footer>
     <div class="footer-content">
-      <p>Suma total de contadores: {{ sumaTotal }}</p>
+      <span class="icon">Σ</span>
+      <p>contadores: <strong>{{ sumaTotal }}</strong></p>
     </div>
   </footer>
 </template>
@@ -17,17 +18,31 @@ const sumaTotal = computed(() => store.getters.sumaTotal);
 
 <style scoped>
 footer {
-  background-color: #f2f2f2;
-  padding: 20px;
+  background-color: #0f0d21;
+  border-top: 1px solid #2a2740;
+  padding: 12px 20px;
   text-align: center;
-  border-top: 1px solid #e0e0e0;
-  bottom: 0;
   position: fixed;
+  bottom: 0;
   width: 100%;
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #f1f1f1;
+  font-size: 20px;
+}
+
+.footer-content .icon {
+  font-size: 24px;
+  color: #ffcc00;
+}
+
+.footer-content strong {
+  color: #4ade80;
+  font-weight: bold;
 }
 </style>

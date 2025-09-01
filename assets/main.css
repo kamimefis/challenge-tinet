@@ -1,6 +1,19 @@
-* {
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: green;
+    color: #fff6f4;
+    background-color: #0f0d21;
+}
+
+.container-element{
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: none;
+    transition: background 0.2s, transform 0.1s;
+}
+.container-element:focus {
+  outline: none;
+  border-color: blue;
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.3);
 }
