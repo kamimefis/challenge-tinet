@@ -17,6 +17,7 @@
 
     <ModalAgregarContador />
   </div>
+  <Footer/>
 </template>
 
 <script setup>
@@ -25,11 +26,13 @@ import { useStore } from "vuex";
 import ListadorDeContadores from "@/components/listador-de-contadores/ListadorDeContadores.vue";
 import ModalAgregarContador from "@/components/ModalAgregarContador.vue";
 import Header from "@/components/Header.vue"
+import Footer from "@/components/Footer.vue"
 
 const store = useStore();
 // const nuevoNombreInput = ref("");
 
-const contadores = computed(() => store.getters.contadoresOrdenados);
+const contadores = computed(() => store.getters.contadoresFiltrados);
+// const contadores = computed(() => store.getters.contadoresOrdenados);
 // const contadores = computed(() => store.state.contadores);
 const sumaTotal = computed(() => store.getters.sumaTotal);
 
