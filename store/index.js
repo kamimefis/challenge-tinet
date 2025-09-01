@@ -12,6 +12,7 @@ export const store = createStore({
         tipo: "",
         valor: null,
       },
+      busqueda: "" 
     };
   },
   mutations: {
@@ -91,6 +92,9 @@ export const store = createStore({
     limpiarFiltro(state) {
       state.filtro = { tipo: "", valor: null };
     },
+    setBusqueda(state, texto) {
+      state.busqueda = texto;
+    }
   },
   actions: {
     // Define your actions here
@@ -126,10 +130,14 @@ export const store = createStore({
     contadoresFiltrados: (state, getters) => {
       let lista = getters.contadoresOrdenados;
       if (state.filtro.tipo === "mayor" && state.filtro.valor !== null) {
-        return lista.filter((item) => item.valor > state.filtro.valor);
+        lista = lista.filter((item) => item.valor > state.filtro.valor);
       }
       if (state.filtro.tipo === "menor" && state.filtro.valor !== null) {
-        return lista.filter((item) => item.valor < state.filtro.valor);
+        lista = lista.filter((item) => item.valor < state.filtro.valor);
+      }
+      if (state.busqueda) {
+        lista = lista.filter((item) =>
+          item.nombre.toLowerCase().includes(state.busqueda.toLowerCase()));
       }
       return lista;
     },

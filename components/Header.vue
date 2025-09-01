@@ -3,12 +3,14 @@
     <h1>Gestor de Contadores</h1>
     <OrdenarContadores />
     <FiltrarContadores/>
+    <BuscarContadores />
   </header>
 </template>
 
 <script setup>
 import OrdenarContadores from "./OrdenarContadores.vue";
 import FiltrarContadores from "./FiltrarContadores.vue"
+import BuscarContadores from "./BuscarContadores.vue"
 </script>
 
 <style scoped>
